@@ -20,130 +20,114 @@ body {
 header {
   background: #111;
   color: white;
+  padding: 25px 20px;
   text-align: center;
-  padding: 22px;
 }
 
-.logo {
-  font-size: 30px;
-  font-weight: bold;
+header h1 {
+  margin: 0;
+  font-size: 32px;
 }
 
-.tag {
-  color: #bbb;
-  margin-top: 5px;
+header p {
+  margin: 8px 0 0;
+  color: #ccc;
 }
 
 .container {
-  max-width: 600px;
-  margin: auto;
-  padding: 18px;
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 15px;
 }
 
-.card {
+.product {
   background: white;
   border-radius: 20px;
-  overflow: hidden;
-  box-shadow: 0 5px 20px #0002;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgba(0,0,0,.08);
 }
 
-.gallery {
+.images {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3px;
-}
-
-.gallery img {
-  width: 100%;
-  aspect-ratio: 1 / 1.15;
-  object-fit: cover;
-}
-
-.info {
-  padding: 20px;
-}
-
-.title {
-  font-size: 24px;
-  font-weight: bold;
-  margin: 0 0 8px;
-}
-
-.price {
-  font-size: 23px;
-  font-weight: bold;
-  margin-bottom: 20px;
-}
-
-.label {
-  font-weight: bold;
-  margin: 18px 0 8px;
-}
-
-.options {
-  display: flex;
-  gap: 8px;
-  flex-wrap: wrap;
-}
-
-.option {
-  border: 1px solid #ddd;
-  background: white;
-  padding: 10px 16px;
-  border-radius: 10px;
-  font-size: 15px;
-}
-
-.option.active {
-  background: #111;
-  color: white;
-}
-
-.quantity {
-  display: flex;
-  align-items: center;
   gap: 15px;
 }
 
-.quantity button {
-  width: 42px;
-  height: 42px;
-  border: none;
-  border-radius: 10px;
-  font-size: 22px;
-  background: #eee;
+.images img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 15px;
 }
 
-.quantity span {
-  font-size: 18px;
+h2 {
+  font-size: 28px;
+  margin-bottom: 10px;
+}
+
+.price {
+  font-size: 26px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+label {
+  display: block;
+  font-weight: bold;
+  margin-top: 18px;
+  margin-bottom: 8px;
+}
+
+select,
+input {
+  width: 100%;
+  padding: 14px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 17px;
+  background: white;
+}
+
+.total {
+  margin-top: 20px;
+  padding: 15px;
+  background: #f1f1f1;
+  border-radius: 12px;
+  font-size: 21px;
   font-weight: bold;
 }
 
-.summary {
-  background: #f3f3f3;
-  border-radius: 14px;
-  padding: 15px;
-  margin-top: 20px;
-  line-height: 2;
-}
-
-.order {
+button {
   width: 100%;
+  margin-top: 20px;
+  padding: 16px;
   border: none;
+  border-radius: 12px;
   background: #111;
   color: white;
-  padding: 16px;
-  border-radius: 12px;
-  font-size: 17px;
+  font-size: 20px;
   font-weight: bold;
-  margin-top: 15px;
+  cursor: pointer;
 }
 
-.footer {
+button:hover {
+  opacity: .9;
+}
+
+footer {
   text-align: center;
+  padding: 30px;
   color: #777;
-  font-size: 12px;
-  padding: 20px;
+}
+
+@media (max-width: 600px) {
+  .images {
+    grid-template-columns: 1fr;
+  }
+
+  .images img {
+    height: 280px;
+  }
 }
 </style>
 </head>
@@ -151,157 +135,95 @@ header {
 <body>
 
 <header>
-  <div class="logo">Zovo.Jordan</div>
-  <div class="tag">ستايلك يبدأ من هنا</div>
+  <h1>Zovo.Jordan</h1>
+  <p>أناقتك تبدأ من هنا</p>
 </header>
 
 <div class="container">
 
-  <div class="card">
+  <div class="product">
 
-    <div class="gallery">
-      <img src="product-1.jpg" alt="Zovo Jordan">
-      <img src="product-2.jpg" alt="Zovo Jordan">
+    <div class="images">
+      <img src="IMG_6886.jpeg" alt="منتج Zovo.Jordan">
+      <img src="IMG_6887.jpeg" alt="منتج Zovo.Jordan">
     </div>
 
-    <div class="info">
+    <h2>منتج Zovo.Jordan</h2>
 
-      <h1 class="title">طقم قميص مخطط + جينز أسود</h1>
+    <p>
+      منتج مميز بتصميم أنيق وجودة عالية، مناسب لإطلالتك اليومية.
+    </p>
 
-      <div class="price">
-        15 دينار أردني
-      </div>
-
-      <div class="label">اللون</div>
-
-      <div class="options" id="colors">
-        <button class="option active" onclick="choose(this,'colors')">
-          أزرق وأبيض
-        </button>
-
-        <button class="option" onclick="choose(this,'colors')">
-          أسود وأبيض
-        </button>
-      </div>
-
-      <div class="label">المقاس</div>
-
-      <div class="options" id="sizes">
-
-        <button class="option" onclick="choose(this,'sizes')">
-          S
-        </button>
-
-        <button class="option active" onclick="choose(this,'sizes')">
-          M
-        </button>
-
-        <button class="option" onclick="choose(this,'sizes')">
-          L
-        </button>
-
-        <button class="option" onclick="choose(this,'sizes')">
-          XL
-        </button>
-
-      </div>
-
-      <div class="label">الكمية</div>
-
-      <div class="quantity">
-
-        <button onclick="changeQuantity(-1)">
-          −
-        </button>
-
-        <span id="quantity">
-          1
-        </span>
-
-        <button onclick="changeQuantity(1)">
-          +
-        </button>
-
-      </div>
-
-      <div class="summary">
-
-        المنتج: طقم قميص + جينز<br>
-
-        السعر: <b>15 د.أ</b><br>
-
-        الكمية:
-        <b id="summaryQuantity">1</b><br>
-
-        الإجمالي:
-        <b id="total">15 د.أ</b>
-
-      </div>
-
-      <button class="order" onclick="order()">
-        تأكيد الطلب
-      </button>
-
+    <div class="price">
+      15 دينار أردني
     </div>
 
-  </div>
+    <label for="color">اختر اللون</label>
+    <select id="color">
+      <option>أسود</option>
+      <option>أبيض</option>
+      <option>بيج</option>
+      <option>رمادي</option>
+    </select>
 
-  <div class="footer">
-    Zovo.Jordan © 2026
+    <label for="size">اختر المقاس</label>
+    <select id="size">
+      <option>S</option>
+      <option>M</option>
+      <option>L</option>
+      <option>XL</option>
+    </select>
+
+    <label for="quantity">الكمية</label>
+    <input
+      type="number"
+      id="quantity"
+      value="1"
+      min="1"
+      onchange="updateTotal()"
+    >
+
+    <div class="total">
+      المجموع: <span id="total">15</span> دينار أردني
+    </div>
+
+    <button onclick="orderNow()">
+      اطلب الآن
+    </button>
+
   </div>
 
 </div>
 
+<footer>
+  © 2026 Zovo.Jordan - جميع الحقوق محفوظة
+</footer>
+
 <script>
+function updateTotal() {
+  const quantity = document.getElementById("quantity").value;
+  const total = quantity * 15;
 
-let quantity = 1;
-
-function choose(button, group) {
-
-  document
-    .querySelectorAll("#" + group + " .option")
-    .forEach(function(item) {
-      item.classList.remove("active");
-    });
-
-  button.classList.add("active");
+  document.getElementById("total").textContent = total;
 }
 
-function changeQuantity(amount) {
+function orderNow() {
+  const color = document.getElementById("color").value;
+  const size = document.getElementById("size").value;
+  const quantity = document.getElementById("quantity").value;
 
-  quantity += amount;
+  const message =
+    "مرحباً، أريد طلب من Zovo.Jordan%0A" +
+    "اللون: " + color + "%0A" +
+    "المقاس: " + size + "%0A" +
+    "الكمية: " + quantity + "%0A" +
+    "السعر: " + (quantity * 15) + " دينار";
 
-  if (quantity < 1) {
-    quantity = 1;
-  }
-
-  document.getElementById("quantity").innerText = quantity;
-
-  document.getElementById("summaryQuantity").innerText = quantity;
-
-  document.getElementById("total").innerText =
-    (quantity * 15) + " د.أ";
-}
-
-function order() {
-
-  let color =
-    document.querySelector("#colors .active").innerText;
-
-  let size =
-    document.querySelector("#sizes .active").innerText;
-
-  let total = quantity * 15;
-
-  alert(
-    "تفاصيل الطلب\n\n" +
-    "اللون: " + color + "\n" +
-    "المقاس: " + size + "\n" +
-    "الكمية: " + quantity + "\n" +
-    "الإجمالي: " + total + " د.أ"
+  window.open(
+    "https://wa.me/?text=" + message,
+    "_blank"
   );
 }
-
 </script>
 
 </body>
