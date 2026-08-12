@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zovo.Jordan</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #f7f7f7;
+  color: #111;
+}
+
+header {
+  background: #111;
+  color: white;
+  text-align: center;
+  padding: 22px;
+}
+
+.logo {
+  font-size: 30px;
+  font-weight: bold;
+}
+
+.tag {
+  color: #bbb;
+  margin-top: 5px;
+}
+
+.container {
+  max-width: 600px;
+  margin: auto;
+  padding: 18px;
+}
+
+.card {
+  background: white;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px #0002;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+}
+
+.gallery img {
+  width: 100%;
+  aspect-ratio: 1 / 1.15;
+  object-fit: cover;
+}
+
+.info {
+  padding: 20px;
+}
+
+.title {
+  font-size: 24px;
+  font-weight: bold;
+  margin: 0 0 8px;
+}
+
+.price {
+  font-size: 23px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.label {
+  font-weight: bold;
+  margin: 18px 0 8px;
+}
+
+.options {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.option {
+  border: 1px solid #ddd;
+  background: white;
+  padding: 10px 16px;
+  border-radius: 10px;
+  font-size: 15px;
+}
+
+.option.active {
+  background: #111;
+  color: white;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.quantity button {
+  width: 42px;
+  height: 42px;
+  border: none;
+  border-radius: 10px;
+  font-size: 22px;
+  background: #eee;
+}
+
+.quantity span {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.summary {
+  background: #f3f3f3;
+  border-radius: 14px;
+  padding: 15px;
+  margin-top: 20px;
+  line-height: 2;
+}
+
+.order {
+  width: 100%;
+  border: none;
+  background: #111;
+  color: white;
+  padding: 16px;
+  border-radius: 12px;
+  font-size: 17px;
+  font-weight: bold;
+  margin-top: 15px;
+}
+
+.footer {
+  text-align: center;
+  color: #777;
+  font-size: 12px;
+  padding: 20px;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">Zovo.Jordan</div>
+  <div class="tag">ستايلك يبدأ من هنا</div>
+</header>
+
+<div class="container">
+
+  <div class="card">
+
+    <div class="gallery">
+      <img src="product-1.jpg" alt="Zovo Jordan">
+      <img src="product-2.jpg" alt="Zovo Jordan">
+    </div>
+
+    <div class="info">
+
+      <h1 class="title">طقم قميص مخطط + جينز أسود</h1>
+
+      <div class="price">
+        15 دينار أردني
+      </div>
+
+      <div class="label">اللون</div>
+
+      <div class="options" id="colors">
+        <button class="option active" onclick="choose(this,'colors')">
+          أزرق وأبيض
+        </button>
+
+        <button class="option" onclick="choose(this,'colors')">
+          أسود وأبيض
+        </button>
+      </div>
+
+      <div class="label">المقاس</div>
+
+      <div class="options" id="sizes">
+
+        <button class="option" onclick="choose(this,'sizes')">
+          S
+        </button>
+
+        <button class="option active" onclick="choose(this,'sizes')">
+          M
+        </button>
+
+        <button class="option" onclick="choose(this,'sizes')">
+          L
+        </button>
+
+        <button class="option" onclick="choose(this,'sizes')">
+          XL
+        </button>
+
+      </div>
+
+      <div class="label">الكمية</div>
+
+      <div class="quantity">
+
+        <button onclick="changeQuantity(-1)">
+          −
+        </button>
+
+        <span id="quantity">
+          1
+        </span>
+
+        <button onclick="changeQuantity(1)">
+          +
+        </button>
+
+      </div>
+
+      <div class="summary">
+
+        المنتج: طقم قميص + جينز<br>
+
+        السعر: <b>15 د.أ</b><br>
+
+        الكمية:
+        <b id="summaryQuantity">1</b><br>
+
+        الإجمالي:
+        <b id="total">15 د.أ</b>
+
+      </div>
+
+      <button class="order" onclick="order()">
+        تأكيد الطلب
+      </button>
+
+    </div>
+
+  </div>
+
+  <div class="footer">
+    Zovo.Jordan © 2026
+  </div>
+
+</div>
+
+<script>
+
+let quantity = 1;
+
+function choose(button, group) {
+
+  document
+    .querySelectorAll("#" + group + " .option")
+    .forEach(function(item) {
+      item.classList.remove("active");
+    });
+
+  button.classList.add("active");
+}
+
+function changeQuantity(amount) {
+
+  quantity += amount;
+
+  if (quantity < 1) {
+    quantity = 1;
+  }
+
+  document.getElementById("quantity").innerText = quantity;
+
+  document.getElementById("summaryQuantity").innerText = quantity;
+
+  document.getElementById("total").innerText =
+    (quantity * 15) + " د.أ";
+}
+
+function order() {
+
+  let color =
+    document.querySelector("#colors .active").innerText;
+
+  let size =
+    document.querySelector("#sizes .active").innerText;
+
+  let total = quantity * 15;
+
+  alert(
+    "تفاصيل الطلب\n\n" +
+    "اللون: " + color + "\n" +
+    "المقاس: " + size + "\n" +
+    "الكمية: " + quantity + "\n" +
+    "الإجمالي: " + total + " د.أ"
+  );
+}
+
+</script>
+
+</body>
+</html>
